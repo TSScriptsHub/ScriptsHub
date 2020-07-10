@@ -9,9 +9,6 @@ For the UPD disks not having user name in the RDP user list, it will be dismount
 USAGE: 
 -. Require to run on RDHS with 2012 R2 or above
 
-NOTE: 
-saweng, Oct 2017
-
 #>
 
 #Emunate all mounted VHDs
