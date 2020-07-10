@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Windows",
+    "\\Windows\\DHCP",
+    "\\Windows\\Directory Service",
+    "\\Windows\\DNS",
+    "\\Windows\\Failover Cluster",
+    "\\Windows\\File System and Storage",
+    "\\Windows\\Network",
+    "\\Windows\\Printing",
+    "\\Windows\\Shell"
+  ],
+  "SelectedNode": "\\Windows\\readme.txt",
+  "PreviewInSolutionExplorer": false
+}

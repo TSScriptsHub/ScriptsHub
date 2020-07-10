@@ -54,3 +54,4 @@ foreach($VHD in $VHDs)
         write-host "Error dismount VHD" $VHD.DeviceID
 
     }
+}
