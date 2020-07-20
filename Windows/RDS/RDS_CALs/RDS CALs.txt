@@ -1,0 +1,26 @@
+Add-WindowsFeature RDS-RD-Server,RDS-Licensing,RDS-Licensing-UI,RSAT-RDS-Licensing-Diagnosis-UI -IncludeManagementTools –IncludeAllSubFeature -Restart
+Import-Module RemoteDesktop
+
+New-RDSessionDeployment [-ConnectionBroker] <String> [-SessionHost] <String[]> [[-WebAccessServer] <String>] [<CommonParameters>]
+New-RDSessionDeployment –ConnectionBroker vzhenw444VM –WebAccessServer vzhenw444VM –SessionHost vzhenw444VM
+
+Add-RDServer -Server vzhenw444VM -Role RDS-LICENSING -ConnectionBroker vzhenw444VM
+
+Set-RDLicenseConfiguration -Mode <LicensingMode> {PerDevice | PerUser | NotConfigured} -LicenseServer <string[]>[-Force] [-ConnectionBroker <string>] [<CommonParameters>]
+Set-RDLicenseConfiguration -LicenseServer server2.domain.com -Mode PerDevice -ConnectionBroker vzhenw444VM
+
+Get-WmiObject Win32_TSLicenseKeyPack
+wmic /namespace:\\root\CIMV2 PATH Win32_TSLicenseKeyPack CALL RemoveLicensesWithIdCount X,N
+wmic /namespace:\\root\CIMV2 PATH Win32_TSLicenseKeyPack CALL UninstallLicenseKeyPackWithId X
+
+https://docs.microsoft.com/zh-cn/windows/desktop/TermServ/win32-tslicensekeypack
+
+
+$LicMode = Read-Host("Please enter the licensing mode this server will run under.  Type '2' for Per Device, Type '4' for Per User")
+$obj = gwmi -namespace "Root/CIMV2/TerminalServices" Win32_TerminalServiceSetting
+$LicStatChange = $obj.ChangeMode($LicMode)
+$LicServUpdate = $obj.SetSpecifiedLicenseServerList("127.0.0.1")
+echo $LicStatChange.ReturnValue
+echo $LicServUpdate.ReturnValue
+Start-Process "licmgr.exe"
+
