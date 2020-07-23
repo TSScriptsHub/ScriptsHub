@@ -1,4 +1,4 @@
-# ScrtipsHub
+# ScriptsHub
 Scripts Hub for sharing scripts used during troubleshooting, such as the Powershell and VB scripts.
 
 # DISCLAIMER:
